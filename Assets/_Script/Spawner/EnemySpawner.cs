@@ -13,7 +13,11 @@ public class EnemySpawner : Spawner
 
     protected override void LoadComponents()
     {
-        SetPoolName("Enemies");
         base.LoadComponents();
+    }
+
+    protected override Transform GetPrefab(int prefabType)
+    {
+        return ResourceSystem.Instance.GetEnemy((EnemyType)prefabType).Prefab.transform;
     }
 }

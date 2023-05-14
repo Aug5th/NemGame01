@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyBase : MyMonoBehaviour
 {
-    public Stats Stats { get; private set; }
-    public virtual void SetStats(Stats stats) => Stats = stats;
-    public virtual void TakeDamage(int damage)
+    public EnemyStats Stats { get; private set; }
+    public virtual void SetStats(EnemyStats stats) => Stats = stats;
+    public virtual void ReceiveDamage(int damage)
     {
-
+        
     }
 }

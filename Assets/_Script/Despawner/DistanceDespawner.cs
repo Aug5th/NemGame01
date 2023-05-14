@@ -5,7 +5,7 @@ using UnityEngine;
 public class DistanceDespawner : Despawner
 {
     [SerializeField]
-    private float maxDistance = 40f;
+    protected float maxDistance = 70f;
     [SerializeField]
     private float distance;
     [SerializeField]

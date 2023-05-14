@@ -38,9 +38,9 @@ public class EnemyController : MyMonoBehaviour
     {
         foreach (var spawnPoint in slimeNestSpawnPoints)
         {
-            string slimeType = EnemySpawner.Slime;
+            int slimeType = (int)EnemyType.Slime;
             if (spawnPoint.name == "KingSlimeSpawnPoint")
-                slimeType = EnemySpawner.KingSlime;
+                slimeType = (int)EnemyType.KingSlime;
 
             var slime = enemySpawner.Spawn(slimeType, spawnPoint.position, spawnPoint.rotation);
             slime.gameObject.SetActive(true);

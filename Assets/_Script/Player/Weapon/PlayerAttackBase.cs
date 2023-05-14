@@ -33,7 +33,7 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
 
     protected abstract void Attack();
 
-    protected void AttackNearestTarget(string projectileType , Transform attackPoint)
+    protected void AttackNearestTarget(int projectileType , Transform attackPoint)
     {
         if (nearestTarget == null || !canAttack || !WithinAttackRange())
             return;
@@ -43,7 +43,7 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
         canAttack = false;
     }
 
-    protected void AttackToMousePoint(string projectileType, Transform attackPoint)
+    protected void AttackToMousePoint(int projectileType, Transform attackPoint)
     {
         if (!canAttack)
             return;
@@ -76,7 +76,7 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
         }
     }
 
-    protected void SpawnProjectile(string projectileType , Transform attackPoint , Vector3 targetPosition)
+    protected void SpawnProjectile(int projectileType , Transform attackPoint , Vector3 targetPosition)
     {
         Vector2 direction = targetPosition - attackPoint.position;
         Transform projectile = PlayerController.Instance.WeaponController.ProjectileSpawner.Spawn(projectileType, attackPoint.position, attackPoint.rotation);

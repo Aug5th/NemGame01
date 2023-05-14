@@ -26,7 +26,7 @@ public class PlayerNormalAttack : PlayerAttackBase
     {
         if(InputManager.Instance.MouseLeftClick == 1)
         {
-            AttackToMousePoint(ProjectileSpawner.Arrow, attackPoint);
+            AttackToMousePoint((int)ProjectileType.Arrow, attackPoint);
         } 
     }
 

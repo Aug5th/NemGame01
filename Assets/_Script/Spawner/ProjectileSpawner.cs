@@ -15,10 +15,13 @@ public class ProjectileSpawner : Spawner
 
     protected override void LoadComponents()
     {
-        SetPoolName("Projectiles");
         base.LoadComponents();
     }
 
+    protected override Transform GetPrefab(int prefabType)
+    {
+        return ResourceSystem.Instance.GetProjectile((ProjectileType)prefabType).Prefab.transform;
+    }
 }
 
 

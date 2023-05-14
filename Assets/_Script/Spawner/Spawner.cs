@@ -16,26 +16,22 @@ public abstract class Spawner : MyMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        LoadPrefabs();
+        //LoadPrefabs();
         LoadHolder();
     }
 
-    protected virtual void SetPoolName(string poolName)
-    {
-        this.poolName = poolName;
-    }
     private void LoadHolder()
     {
         if (holder != null)
             return;
         holder = transform.Find("Holder");
     }
-    public virtual Transform Spawn(string prefabName, Vector3 spawnPosition, Quaternion rotation)
+    public virtual Transform Spawn(int prefabType, Vector3 spawnPosition, Quaternion rotation)
     {
-        Transform prefab = GetPrefabByName(prefabName, prefabs);
+        Transform prefab = GetPrefab(prefabType);
         if (prefab == null)
         {
-            Debug.LogWarning("Prefab not found : " + prefabName);
+            Debug.LogWarning("Prefab not found");
             return null;
         }
 
@@ -68,46 +64,36 @@ public abstract class Spawner : MyMonoBehaviour
         obj.gameObject.SetActive(false);
     }
 
-    protected void LoadPrefabs()
-    {
-        if (prefabs.Count > 0)
-            return;
+    //protected void LoadPrefabs()
+    //{
+    //    if (prefabs.Count > 0)
+    //        return;
 
-        Transform prefabObjects = transform.Find(poolName);
-        if (prefabObjects != null)
-        {
-            foreach (Transform prefab in prefabObjects)
-            {
-                prefabs.Add(prefab);
-            }
-            HidePrefabs();
+    //    Transform prefabObjects = transform.Find(poolName);
+    //    if (prefabObjects != null)
+    //    {
+    //        foreach (Transform prefab in prefabObjects)
+    //        {
+    //            prefabs.Add(prefab);
+    //        }
+    //        HidePrefabs();
 
-            Debug.Log(transform.name + " : LoadPrefabs with pool : "+ poolName);
-        }
-        else
-        {
-            Debug.LogError(transform.name + " : LoadPrefabs nullllll ");
-        }
-    }
+    //        Debug.Log(transform.name + " : LoadPrefabs with pool : "+ poolName);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError(transform.name + " : LoadPrefabs nullllll ");
+    //    }
+    //}
 
-    protected void HidePrefabs()
-    {
-        foreach (Transform prefab in prefabs)
-        {
-            prefab.gameObject.SetActive(false);
-        }
-    }
+    //protected void HidePrefabs()
+    //{
+    //    foreach (Transform prefab in prefabs)
+    //    {
+    //        prefab.gameObject.SetActive(false);
+    //    }
+    //}
 
-    protected Transform GetPrefabByName(string prefabName, List<Transform> prefabs)
-    {
-        foreach(Transform prefab in prefabs)
-        {
-            if(prefab.name == prefabName)
-            {
-                return prefab;
-            }
-        }
-        return null;
-    }
+    protected abstract Transform GetPrefab(int prefabType);
 
 }

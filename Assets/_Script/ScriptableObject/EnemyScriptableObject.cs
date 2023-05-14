@@ -8,15 +8,15 @@ public class EnemyScriptableObject : ScriptableObject
 {
     public EnemyType enemyType;
     [SerializeField]
-    private Stats _stats;
-    public Stats BaseStats => _stats;
+    private EnemyStats _stats;
+    public EnemyStats BaseStats => _stats;
 
     public EnemyBase Prefab;
 
 }
 
 [Serializable]
-public struct Stats
+public struct EnemyStats
 {
     public float Health;
     public float AttackPower;
