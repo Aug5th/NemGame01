@@ -79,11 +79,14 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
     protected void SpawnProjectile(int projectileType , Transform attackPoint , Vector3 targetPosition)
     {
         Vector2 direction = targetPosition - attackPoint.position;
-        Transform projectile = PlayerController.Instance.WeaponController.ProjectileSpawner.Spawn(projectileType, attackPoint.position, attackPoint.rotation);
+        //Transform projectile = ProjectileSpawner.Instance.Spawn(projectileType, attackPoint.position, attackPoint.rotation);
+        var projectile = ProjectileSpawner.Instance.SpawnProjectile((ProjectileType)projectileType);
+        projectile.transform.SetPositionAndRotation(attackPoint.position, attackPoint.rotation);
+
         if (projectile == null)
             return;
         projectile.gameObject.SetActive(true);
-        projectile.right = direction;
+        projectile.transform.right = direction;
         projectile.GetComponent<Rigidbody2D>().velocity = direction.normalized * projectileSpeed;
     }
 

@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class Spawner : MyMonoBehaviour
 {
-    [SerializeField]
-    private string poolName = "Prefabs";
     [SerializeField]
     protected List<Transform> prefabs;
     [SerializeField]
@@ -16,7 +15,6 @@ public abstract class Spawner : MyMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        //LoadPrefabs();
         LoadHolder();
     }
 
@@ -64,36 +62,7 @@ public abstract class Spawner : MyMonoBehaviour
         obj.gameObject.SetActive(false);
     }
 
-    //protected void LoadPrefabs()
-    //{
-    //    if (prefabs.Count > 0)
-    //        return;
-
-    //    Transform prefabObjects = transform.Find(poolName);
-    //    if (prefabObjects != null)
-    //    {
-    //        foreach (Transform prefab in prefabObjects)
-    //        {
-    //            prefabs.Add(prefab);
-    //        }
-    //        HidePrefabs();
-
-    //        Debug.Log(transform.name + " : LoadPrefabs with pool : "+ poolName);
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError(transform.name + " : LoadPrefabs nullllll ");
-    //    }
-    //}
-
-    //protected void HidePrefabs()
-    //{
-    //    foreach (Transform prefab in prefabs)
-    //    {
-    //        prefab.gameObject.SetActive(false);
-    //    }
-    //}
-
     protected abstract Transform GetPrefab(int prefabType);
+    
 
 }

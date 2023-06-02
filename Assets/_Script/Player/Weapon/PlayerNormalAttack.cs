@@ -6,7 +6,6 @@ public class PlayerNormalAttack : PlayerAttackBase
 {
     [SerializeField]
     private Transform attackPoint;
-
     protected override void FixedUpdate()
     {
         WeaponLookAtMouse();
@@ -26,7 +25,7 @@ public class PlayerNormalAttack : PlayerAttackBase
     {
         if(InputManager.Instance.MouseLeftClick == 1)
         {
-            AttackToMousePoint((int)ProjectileType.Arrow, attackPoint);
+            AttackToMousePoint(Random.Range(0,2), attackPoint);
         } 
     }
 

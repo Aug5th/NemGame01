@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class WeaponController : MyMonoBehaviour
 {
-    Vector3 weaponFlipLeft = new Vector3(-0.2f, -0.7f, 0f);
-    Vector3 weaponFlipRight = new Vector3(0.2f, -0.7f, 0f);
+    Vector3 weaponFlipLeft = new Vector3(-0.1f, -0.4f, 0f);
+    Vector3 weaponFlipRight = new Vector3(0.1f, -0.4f, 0f);
     private Transform weapon;
-
-    [SerializeField]
-    private ProjectileSpawner projectileSpawner;
-
-    public ProjectileSpawner ProjectileSpawner => projectileSpawner;
 
     protected override void LoadComponents()
     {
@@ -22,7 +17,6 @@ public class WeaponController : MyMonoBehaviour
     private void LoadWeapon()
     {
         weapon = transform;
-        projectileSpawner = FindObjectOfType<ProjectileSpawner>();
     }
 
     public void FlipWeapon(float direction)

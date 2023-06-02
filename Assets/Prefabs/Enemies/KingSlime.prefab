@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8393757371982420304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8393757372513345115}
@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8393757372513345115}
   - component: {fileID: 6148083341123067501}
+  - component: {fileID: 3041882493139785532}
   m_Layer: 0
   m_Name: KingSlime
   m_TagString: Enemy
@@ -129,3 +130,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c39c79326f28a499c6549eb7354314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+--- !u!58 &3041882493139785532
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8393757372513345114}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.014142275, y: -0.18446785}
+  serializedVersion: 2
+  m_Radius: 0.6284646
