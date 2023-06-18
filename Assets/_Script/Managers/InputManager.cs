@@ -19,6 +19,9 @@ public class InputManager : Singleton<InputManager>
     [SerializeField]
     private float mouseLeftClick;
     public float MouseLeftClick => mouseLeftClick;
+    [SerializeField]
+    private float mouseRightClick;
+    public float MouseRightClick => mouseRightClick;
 
 
     void Update()
@@ -32,6 +35,7 @@ public class InputManager : Singleton<InputManager>
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         mouseLeftClick = Input.GetAxis("Fire1");
+        mouseRightClick = Input.GetAxis("Fire2");
     }
 
     public void GetMousePosition()
