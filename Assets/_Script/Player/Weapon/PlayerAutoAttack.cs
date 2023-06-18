@@ -9,7 +9,6 @@ public class PlayerAutoAttack : PlayerAttackBase
         base.LoadComponents();
         attackDistance = 6f;
         attackRate = 0.05f;
-        projectileSpeed = 20f;
     }
     protected override void Attack()
     {

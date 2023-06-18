@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MyMonoBehaviour
+public class WeaponController : Singleton<WeaponController>
 {
     Vector3 weaponFlipLeft = new Vector3(-0.1f, -0.4f, 0f);
     Vector3 weaponFlipRight = new Vector3(0.1f, -0.4f, 0f);
-    private Transform weapon;
+    private Transform weaponModel;
+    public Transform WeaponModel => weaponModel;
 
     protected override void LoadComponents()
     {
@@ -16,18 +17,18 @@ public class WeaponController : MyMonoBehaviour
 
     private void LoadWeapon()
     {
-        weapon = transform;
+        weaponModel = transform.Find("Model");
     }
 
     public void FlipWeapon(float direction)
     {
         if (direction > 0)
         {
-            weapon.localPosition = weaponFlipRight;
+            transform.localPosition = weaponFlipRight;
         }
         if (direction < 0)
         {
-            weapon.localPosition = weaponFlipLeft;
+            transform.localPosition = weaponFlipLeft;
         }
     }
 }

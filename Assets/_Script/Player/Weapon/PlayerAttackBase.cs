@@ -8,8 +8,6 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
     protected float attackDistance = 7f;
     [SerializeField]
     protected float attackRate = 0.1f;
-    [SerializeField]
-    protected float projectileSpeed = 10f;
 
     [SerializeField]
     protected GameObject nearestTarget;
@@ -33,23 +31,23 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
 
     protected abstract void Attack();
 
-    protected void AttackNearestTarget(int projectileType , Transform attackPoint)
+    protected void AttackNearestTarget(ProjectileType projectileType , Transform attackPoint)
     {
         if (nearestTarget == null || !canAttack || !WithinAttackRange())
             return;
            
-        SpawnProjectile(projectileType, attackPoint , nearestTarget.transform.position);
-        StartCoroutine(AllowToAttack());
+        var projectile = SpawnProjectile(projectileType, attackPoint , nearestTarget.transform.position);
+        StartCoroutine(AllowToAttack(projectile));
         canAttack = false;
     }
 
-    protected void AttackToMousePoint(int projectileType, Transform attackPoint)
+    protected void AttackToMousePoint(ProjectileType projectileType, Transform attackPoint)
     {
         if (!canAttack)
             return;
         
-        SpawnProjectile(projectileType, attackPoint, InputManager.Instance.MousePosition);
-        StartCoroutine(AllowToAttack());
+        var projectile = SpawnProjectile(projectileType, attackPoint, InputManager.Instance.MousePosition);
+        StartCoroutine(AllowToAttack(projectile));
         canAttack = false;
     }
 
@@ -76,23 +74,24 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
         }
     }
 
-    protected void SpawnProjectile(int projectileType , Transform attackPoint , Vector3 targetPosition)
+    protected ProjectileBase SpawnProjectile(ProjectileType projectileType , Transform attackPoint , Vector3 targetPosition)
     {
         Vector2 direction = targetPosition - attackPoint.position;
-        //Transform projectile = ProjectileSpawner.Instance.Spawn(projectileType, attackPoint.position, attackPoint.rotation);
-        var projectile = ProjectileSpawner.Instance.SpawnProjectile((ProjectileType)projectileType);
+        var projectile = ProjectileSpawner.Instance.SpawnProjectile(projectileType);
         projectile.transform.SetPositionAndRotation(attackPoint.position, attackPoint.rotation);
 
-        if (projectile == null)
-            return;
+        //if (projectile == null)
+        //    return null;
         projectile.gameObject.SetActive(true);
         projectile.transform.right = direction;
-        projectile.GetComponent<Rigidbody2D>().velocity = direction.normalized * projectileSpeed;
+        projectile.GetComponent<Rigidbody2D>().velocity = direction.normalized * projectile.Stats.speed;
+
+        return projectile;
     }
 
-    IEnumerator AllowToAttack()
+    IEnumerator AllowToAttack(ProjectileBase projectile)
     {
-        yield return new WaitForSeconds(attackRate);
+        yield return new WaitForSeconds(projectile.Stats.attackRate);
         canAttack = true;
     }
 

@@ -17,7 +17,6 @@ public class PlayerNormalAttack : PlayerAttackBase
         base.LoadComponents();
         attackDistance = 5f;
         attackRate = 1f;
-        projectileSpeed = 20f;
     }
 
     
@@ -25,7 +24,7 @@ public class PlayerNormalAttack : PlayerAttackBase
     {
         if(InputManager.Instance.MouseLeftClick == 1)
         {
-            AttackToMousePoint(Random.Range(0,2), attackPoint);
+            AttackToMousePoint(ProjectileType.Arrow, attackPoint);
         } 
     }
 
