@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144da89002921094db382ac500c08d2a, type: 3}
+  m_Name: HealthText
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 4624962969086089158, guid: 4102615b38fd77e4b8861b9f0d69f35e, type: 3}
