@@ -44,11 +44,9 @@ public class HealthTextSpawner : MyMonoBehaviour
             return Instantiate(prefab);
         }, healthText =>
         {
-            Debug.Log("Health Text set active true");
             healthText.gameObject.SetActive(true);
         }, healthText =>
         {
-            Debug.Log("Health Text set active false");
             healthText.gameObject.SetActive(false);
         }, healthText =>
         {

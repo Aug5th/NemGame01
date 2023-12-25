@@ -43,3 +43,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2103056787
+    locked: 0
+  - name: Frontground
+    uniqueID: 2772438363
+    locked: 0
+  - name: CollisionObjects
+    uniqueID: 1493498267
+    locked: 0
+  - name: Characters
+    uniqueID: 677289733
+    locked: 0
+  - name: UI
+    uniqueID: 3447375219
+    locked: 0

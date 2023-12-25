@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class FloatingText : MyMonoBehaviour
 {
     [SerializeField] float timeToLive = 1f;
-    [SerializeField] float floatSpeed = 3f;
+    [SerializeField] float floatSpeed = 1f;
     [SerializeField] Vector3 floatDirection = new Vector3(0, 1, 0);
 
     //[SerializeField] Vector3 offset = new Vector3(0, 0.1f, 0);

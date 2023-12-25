@@ -136,7 +136,6 @@ public class EnemySpawner : MyMonoBehaviour
         enemy.SetStats(baseStats);
         enemy.transform.SetParent(holder);
         SetPool(enemy, type);
-        Debug.Log(enemy.Stats.Health);
         return enemy;
     }
 

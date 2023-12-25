@@ -15,7 +15,7 @@ MonoBehaviour:
   projectileType: 0
   _stats:
     damage: 2
-    speed: 8
+    speed: 3
     attackDistance: 10
     attackRate: 0.7
     maxDistance: 40
