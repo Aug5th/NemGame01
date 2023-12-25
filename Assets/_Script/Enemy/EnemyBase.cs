@@ -47,7 +47,14 @@ public class EnemyBase : MyMonoBehaviour , IDamageable
 
         // release enemy
         _pool.Release(this);
+        DropItem();
 
+    }
+
+    public void DropItem()
+    {
+        var item = ResourceSystem.Instance.GetItem(ItemCode.SLIME);
+        Instantiate(item.Prefab, transform.position, Quaternion.identity);
     }
 
     public void ApplyDamage(float amount)

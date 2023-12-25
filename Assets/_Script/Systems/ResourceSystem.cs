@@ -20,6 +20,11 @@ public class ResourceSystem : Singleton<ResourceSystem>
     [SerializeField] private List<FloatingTextScriptableObject> floatingTexts;
     public List<FloatingTextScriptableObject> FloatingTexts => floatingTexts;
 
+    [Header("ItemResources")]
+    [SerializeField] private List<ItemScriptableObject> items;
+    public List<ItemScriptableObject> Items => items;
+    private Dictionary<ItemCode, ItemScriptableObject> ItemsDict;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -31,6 +36,13 @@ public class ResourceSystem : Singleton<ResourceSystem>
         LoadEnemies();
         LoadProjectile();
         LoadFloatingText();
+        LoadItems();
+    }
+
+    private void LoadItems()
+    {
+        items = Resources.LoadAll<ItemScriptableObject>("Items").ToList();
+        ItemsDict = items.ToDictionary(r => r.ItemCode, r => r);
     }
 
     private void LoadFloatingText()
@@ -53,5 +65,6 @@ public class ResourceSystem : Singleton<ResourceSystem>
     public EnemyScriptableObject GetEnemy(EnemyType t) => EnemiesDict[t];
     public ProjectileScriptableObject GetProjectile(ProjectileType t) => ProjectilesDict[t];
     public FloatingTextScriptableObject GetFloatingText() => FloatingTexts[0];
+    public ItemScriptableObject GetItem(ItemCode c) => ItemsDict[c];
 }
 

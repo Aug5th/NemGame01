@@ -629,7 +629,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &343228117
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -74724,6 +74724,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23bac6c09380a844c82fee6310c8672d, type: 2}
   - {fileID: 11400000, guid: afae5965ee0edb64f8fb85b00cd7e714, type: 2}
   floatingTexts: []
+  items: []
 --- !u!1 &1883007468
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,3 +31,4 @@ public enum ProjectileType
     Fireball = 1,
     Snowball = 2,
 }
+
