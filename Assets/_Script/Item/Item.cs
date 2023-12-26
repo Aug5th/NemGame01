@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MyMonoBehaviour
+public class Item : MyMonoBehaviour , ICollectable
 {
+    public void Collect()
+    {
+        Debug.Log("COLLECT");
+        Destroy(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

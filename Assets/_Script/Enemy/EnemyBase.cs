@@ -53,7 +53,7 @@ public class EnemyBase : MyMonoBehaviour , IDamageable
 
     public void DropItem()
     {
-        var item = ResourceSystem.Instance.GetItem(ItemCode.SLIME);
+        var item = ResourceSystem.Instance.GetItem(ItemCode.Slime);
         Instantiate(item.Prefab, transform.position, Quaternion.identity);
     }
 

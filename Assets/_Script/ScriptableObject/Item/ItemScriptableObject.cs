@@ -26,16 +26,16 @@ public struct Stats
 [Serializable]
 public enum ItemType
 {
-    NONE,
-    CONSUMABLE,
-    QUEST,
-    MATERIAL,
-    EQUIPMENT
+    None,
+    Consumable,
+    Quest,
+    Material,
+    Equipment
 }
 
 [Serializable]
 public enum ItemCode
 {
-    NONE = 0,
-    SLIME = 1
+    None = 0,
+    Slime = 1
 }

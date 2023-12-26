@@ -7,7 +7,7 @@ public class PlayerMovement : MyMonoBehaviour
     [SerializeField]
     private Vector3 mousePosition;
     [SerializeField]
-    private float speed = 3f;
+    private float speed = 1f;
     [SerializeField]
     private Rigidbody2D rb;
 

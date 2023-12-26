@@ -36,7 +36,7 @@ public class ProjectileBase : MyMonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
+        if(collision.CompareTag("Enemy"))
         {
             pool.Release(this);
             Debug.Log("Send Damage : " + Stats.damage);

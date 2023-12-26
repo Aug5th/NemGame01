@@ -17,4 +17,12 @@ public class PlayerController : Singleton<PlayerController>
         player = transform;
         weaponController = FindObjectOfType<WeaponController>();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Item"))
+        {
+            collision.GetComponent<ICollectable>().Collect();
+        }
+    }
 }
