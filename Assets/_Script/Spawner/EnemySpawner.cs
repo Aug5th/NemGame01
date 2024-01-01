@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemySpawner : MyMonoBehaviour 
+public class EnemySpawner : Singleton<EnemySpawner> 
 {
-    private static EnemySpawner instance;
-    public static EnemySpawner Instance => instance;
-
     private ObjectPool<EnemyBase> slimePool;
     private ObjectPool<EnemyBase> kingSlimePool;
     [SerializeField]
@@ -18,10 +15,6 @@ public class EnemySpawner : MyMonoBehaviour
 
     protected override void LoadComponents()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Debug.LogWarning("ProjectileSpawner is existing");
         LoadHolder();
         LoadSpawnPoints();
         base.LoadComponents();

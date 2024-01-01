@@ -10,13 +10,13 @@ public class ItemScriptableObject : ScriptableObject
     public ItemCode ItemCode;
     public Item Prefab;
     [SerializeField]
-    private Stats _stats;
-    public Stats Stats => _stats;
+    private ItemStats _stats;
+    public ItemStats BaseStats => _stats;
 }
 
 
 [Serializable]
-public struct Stats
+public struct ItemStats
 {
     public float DropChance;
     public float Weight; 
@@ -37,5 +37,6 @@ public enum ItemType
 public enum ItemCode
 {
     None = 0,
-    Slime = 1
+    Slime = 1,
+    Gold = 2,
 }

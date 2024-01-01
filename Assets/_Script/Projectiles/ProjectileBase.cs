@@ -31,7 +31,7 @@ public class ProjectileBase : MyMonoBehaviour
 
     public virtual void SendDamage()
     {
-        //send Stats.damage
+        //send ItemStats.damage
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +39,6 @@ public class ProjectileBase : MyMonoBehaviour
         if(collision.CompareTag("Enemy"))
         {
             pool.Release(this);
-            Debug.Log("Send Damage : " + Stats.damage);
             collision.GetComponent<IDamageable>().ApplyDamage(Stats.damage);
         }
     }

@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ProjectileSpawner : MyMonoBehaviour
+public class ProjectileSpawner : Singleton<ProjectileSpawner>
 {
-    private static ProjectileSpawner instance;
-    public static ProjectileSpawner Instance => instance;
-
     private ObjectPool<ProjectileBase> arrowPool;
     private ObjectPool<ProjectileBase> fireballPool;
     [SerializeField]
-    private Transform holder;
+    private Transform _holder;
 
     protected override void LoadComponents()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Debug.LogWarning("ProjectileSpawner is existing");
         LoadHolder();
         base.LoadComponents();
     }
 
     private void LoadHolder()
     {
-        if (holder != null)
+        if (_holder != null)
             return;
-        holder = transform.Find("Holder");
+        _holder = transform.Find("Holder");
     }
 
     private void Start()
@@ -95,9 +88,8 @@ public class ProjectileSpawner : MyMonoBehaviour
         var projectile = GetProjectilePool(type);
         var baseStats = ResourceSystem.Instance.GetProjectile(type).BaseStats;
         projectile.SetStats(baseStats);
-        projectile.transform.SetParent(holder);
+        projectile.transform.SetParent(_holder);
         SetPool(projectile, type);
-        Debug.Log(projectile.Stats.maxDistance);
         return projectile;
     }
 

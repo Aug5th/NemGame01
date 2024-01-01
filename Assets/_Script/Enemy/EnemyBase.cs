@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
 
-public class EnemyBase : MyMonoBehaviour , IDamageable
+public class EnemyBase : MyMonoBehaviour, IDamageable
 {
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private EnemyAnimationHandler _animationHandler;
@@ -13,7 +13,10 @@ public class EnemyBase : MyMonoBehaviour , IDamageable
     [SerializeField] private float _maxHealth;
 
     private ObjectPool<EnemyBase> _pool;
+    
     public EnemyStats Stats { get; private set; }
+
+    private ItemCode[] dropItems = { ItemCode.Slime, ItemCode.Gold };
     
     protected override void LoadComponents()
     {
@@ -29,11 +32,9 @@ public class EnemyBase : MyMonoBehaviour , IDamageable
         _healthBar.UpdateHealthBar(_currentHealth, _maxHealth);
     }
 
-    
-
     public void SetPool(ObjectPool<EnemyBase> pool)
     {
-        this._pool = pool;
+        _pool = pool;
     }
 
     private void Die()
@@ -47,15 +48,27 @@ public class EnemyBase : MyMonoBehaviour , IDamageable
 
         // release enemy
         _pool.Release(this);
-        DropItem();
+        DropItems();
 
     }
 
-    public void DropItem()
+    public void DropItems()
     {
-        var item = ResourceSystem.Instance.GetItem(ItemCode.Slime);
-        Instantiate(item.Prefab, transform.position, Quaternion.identity);
-    }
+        var dropChanceList = ItemSpawner.Instance.ItemDropRateList;
+        foreach (var dropItem in dropItems)
+        {
+            var dropChance = dropChanceList[dropItem];
+            var random = Random.Range(0, 100);
+            Debug.Log(dropItem + " | " + dropChance + " | " + random);
+            if(random <= dropChance)
+            {
+                Vector3 offset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f),0);
+                var item = ItemSpawner.Instance.SpawnItem(dropItem);
+                item.transform.SetLocalPositionAndRotation(transform.position + offset, Quaternion.identity);
+            }
+        }
+       
+    }   
 
     public void ApplyDamage(float amount)
     {

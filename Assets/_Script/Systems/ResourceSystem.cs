@@ -23,7 +23,7 @@ public class ResourceSystem : Singleton<ResourceSystem>
     [Header("ItemResources")]
     [SerializeField] private List<ItemScriptableObject> items;
     public List<ItemScriptableObject> Items => items;
-    private Dictionary<ItemCode, ItemScriptableObject> ItemsDict;
+    private Dictionary<ItemCode, ItemScriptableObject> _itemsDict;
 
     protected override void LoadComponents()
     {
@@ -42,7 +42,7 @@ public class ResourceSystem : Singleton<ResourceSystem>
     private void LoadItems()
     {
         items = Resources.LoadAll<ItemScriptableObject>("Items").ToList();
-        ItemsDict = items.ToDictionary(r => r.ItemCode, r => r);
+        _itemsDict = items.ToDictionary(r => r.ItemCode, r => r);
     }
 
     private void LoadFloatingText()
@@ -66,5 +66,6 @@ public class ResourceSystem : Singleton<ResourceSystem>
     public ProjectileScriptableObject GetProjectile(ProjectileType t) => ProjectilesDict[t];
     public FloatingTextScriptableObject GetFloatingText() => FloatingTexts[0];
     public ItemScriptableObject GetItem(ItemCode c) => ItemsDict[c];
+    public Dictionary<ItemCode, ItemScriptableObject> ItemsDict => _itemsDict;
 }
 

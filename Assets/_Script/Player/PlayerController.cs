@@ -20,9 +20,11 @@ public class PlayerController : Singleton<PlayerController>
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Item"))
+        var collectable = collision.GetComponent<ICollectable>();
+        if(collectable == null)
         {
-            collision.GetComponent<ICollectable>().Collect();
+            return;
         }
+        collectable.Collect();
     }
 }
