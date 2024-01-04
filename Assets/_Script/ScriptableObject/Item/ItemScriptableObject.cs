@@ -9,6 +9,7 @@ public class ItemScriptableObject : ScriptableObject
     public ItemType ItemType;
     public ItemCode ItemCode;
     public Item Prefab;
+    public Sprite itemIcon;
     [SerializeField]
     private ItemStats _stats;
     public ItemStats BaseStats => _stats;
@@ -27,6 +28,7 @@ public struct ItemStats
 public enum ItemType
 {
     None,
+    Gold,
     Consumable,
     Quest,
     Material,

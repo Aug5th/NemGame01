@@ -38,7 +38,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
     {
         ItemStructure item = new ItemStructure();
         item.ItemCode = ItemCode.Gold;
-        item.Amount = 1;
+        item.Quantity = 1;
         dropList.Add(item);
     }
 
@@ -72,7 +72,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
             {
                 Vector3 offset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f),0);
                 var spawnItem = ItemSpawner.Instance.SpawnItem(item.ItemCode);
-                spawnItem.SetItemStruct(item);
+                spawnItem.SetInventoryItem(item);
                 spawnItem.transform.SetLocalPositionAndRotation(transform.position + offset, Quaternion.identity);
             }
         }

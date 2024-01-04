@@ -9,7 +9,7 @@ public class Slime : EnemyBase
         base.SetDropItems();
         ItemStructure item = new ItemStructure();
         item.ItemCode = ItemCode.Slime;
-        item.Amount = 2;
+        item.Quantity = 2;
         dropList.Add(item);
     }
 }

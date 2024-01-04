@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02e658d43ca0994cba42d63366c7dc9, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  ItemType: 3
+  ItemType: 1
   ItemCode: 2
   Prefab: {fileID: 5423229809271942162, guid: bf5e7eb4c69a3d2408222ab37c607da8, type: 3}
+  itemIcon: {fileID: -1272489448, guid: 554a6d5563b2157409a690776f9240f9, type: 3}
   _stats:
     DropChance: 100
     Weight: 1

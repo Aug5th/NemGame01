@@ -9,13 +9,13 @@ public class Item : MyMonoBehaviour , ICollectable
     [SerializeField] public ItemStats Stats { get; private set; }
     public void SetStats(ItemStats stats) => Stats = stats;
 
-    [SerializeField] private ItemStructure _itemStruct;
+    [SerializeField] private InventoryItem _inventoryItem;
 
     private ObjectPool<Item> _pool;
-    public ItemStructure Collect()
+    public InventoryItem Collect()
     {
         Destroy(gameObject);
-        return _itemStruct;
+        return _inventoryItem;
     }
     public void SetPool(ObjectPool<Item> pool)
     {
@@ -25,9 +25,10 @@ public class Item : MyMonoBehaviour , ICollectable
     {
         _pool.Release(this);
     }
-    public void SetItemStruct(ItemStructure itemStruct)
+    public void SetInventoryItem(ItemStructure item)
     {
-        _itemStruct = itemStruct;
+        var itemScript = ResourceSystem.Instance.GetItem(item.ItemCode);
+        _inventoryItem = new InventoryItem(item.ItemCode, itemScript.ItemType, itemScript.itemIcon, item.Quantity);
     }
 }
 
@@ -35,5 +36,5 @@ public class Item : MyMonoBehaviour , ICollectable
 public struct ItemStructure
 {
     public ItemCode ItemCode;
-    public int Amount;
+    public int Quantity;
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICollectable
 {
-    ItemStructure Collect();
+    InventoryItem Collect();
 }

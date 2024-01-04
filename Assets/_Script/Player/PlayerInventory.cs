@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory : MyMonoBehaviour
 {
-    [SerializeField] private List<ItemStructure> inventory;
+    [SerializeField] private List<InventoryItem> _inventory;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var collectable = collision.GetComponent<ICollectable>();
@@ -13,23 +13,27 @@ public class PlayerInventory : MyMonoBehaviour
             return;
         }
         var item = collectable.Collect();
-        UpdateInventory(item);
+        AddItem(item);
     }
-
-    private void UpdateInventory(ItemStructure item)
+    public List<InventoryItem> GetInventory()
     {
-        // Update item amount if exists
-        for (int i = 0; i < inventory.Count; i++)
+        return _inventory;
+    }
+    public void AddItem(InventoryItem item)
+    {
+        InventoryItem existingItem = _inventory.Find(i => i.ItemCode == item.ItemCode);
+
+        if(existingItem != null)
         {
-            if (inventory[i].ItemCode.Equals(item.ItemCode))
-            {
-                ItemStructure newItem = inventory[i];
-                newItem.Amount += item.Amount;
-                inventory[i] = newItem;
-                return;
-            }  
+            existingItem.Quantity += item.Quantity;
         }
-        // Add new item
-        inventory.Add(item);
+        else
+        {
+            _inventory.Add(item);
+        }
+    }
+    public void RemoveItem(InventoryItem item)
+    {
+        _inventory.Remove(item);
     }
 }
