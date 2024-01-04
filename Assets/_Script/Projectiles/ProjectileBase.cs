@@ -24,7 +24,7 @@ public class ProjectileBase : MyMonoBehaviour
         distance = Vector2.Distance(transform.position, mainCamera.transform.position);
         if (distance >= Stats.maxDistance)
         {
-            Debug.Log("DespawnProjectile by range");
+            //Debug.Log("DespawnProjectile by range");
             pool.Release(this);
         }
     }

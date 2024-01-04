@@ -18,4 +18,4 @@ MonoBehaviour:
     AttackPower: 1
     AttackRange: 2
     MovementSpeed: 2
-  Prefab: {fileID: 3386014963372350633, guid: b9f8bce00501c134cb1eb63d13c9181e, type: 3}
+  Prefab: {fileID: 2663244734646097072, guid: b9f8bce00501c134cb1eb63d13c9181e, type: 3}

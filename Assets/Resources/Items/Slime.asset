@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemCode: 1
   Prefab: {fileID: 6960067280254166284, guid: 4213a61822dbccb4f807a1338e5f7e43, type: 3}
   _stats:
-    DropChance: 70
+    DropChance: 50
     Weight: 1

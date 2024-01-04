@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,30 +9,31 @@ public class Item : MyMonoBehaviour , ICollectable
     [SerializeField] public ItemStats Stats { get; private set; }
     public void SetStats(ItemStats stats) => Stats = stats;
 
+    [SerializeField] private ItemStructure _itemStruct;
+
     private ObjectPool<Item> _pool;
-    public void Collect()
+    public ItemStructure Collect()
     {
         Destroy(gameObject);
+        return _itemStruct;
     }
     public void SetPool(ObjectPool<Item> pool)
     {
         _pool = pool;
     }
-
     public void ReleaseItem()
     {
         _pool.Release(this);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    public void SetItemStruct(ItemStructure itemStruct)
     {
-        
+        _itemStruct = itemStruct;
     }
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[Serializable]
+public struct ItemStructure
+{
+    public ItemCode ItemCode;
+    public int Amount;
 }

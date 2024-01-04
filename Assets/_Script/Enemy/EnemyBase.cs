@@ -16,13 +16,15 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
     
     public EnemyStats Stats { get; private set; }
 
-    private ItemCode[] dropItems = { ItemCode.Slime, ItemCode.Gold };
+    [SerializeField] protected List<ItemStructure> dropList = new List<ItemStructure>();
     
     protected override void LoadComponents()
     {
         base.LoadComponents();
         _healthBar = GetComponentInChildren<HealthBar>();
         _animationHandler = GetComponentInChildren<EnemyAnimationHandler>();
+
+        SetDropItems();
     }
 
     public virtual void SetStats(EnemyStats stats)
@@ -30,6 +32,14 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         Stats = stats;
         _currentHealth = _maxHealth = Stats.Health;
         _healthBar.UpdateHealthBar(_currentHealth, _maxHealth);
+    }
+
+    protected virtual void SetDropItems()
+    {
+        ItemStructure item = new ItemStructure();
+        item.ItemCode = ItemCode.Gold;
+        item.Amount = 1;
+        dropList.Add(item);
     }
 
     public void SetPool(ObjectPool<EnemyBase> pool)
@@ -44,10 +54,9 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
 
     public void ReleaseEnemy()
     {
-        // drop items
-
         // release enemy
         _pool.Release(this);
+        // drop items
         DropItems();
 
     }
@@ -55,16 +64,16 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
     public void DropItems()
     {
         var dropChanceList = ItemSpawner.Instance.ItemDropRateList;
-        foreach (var dropItem in dropItems)
+        foreach (var item in dropList)
         {
-            var dropChance = dropChanceList[dropItem];
-            var random = Random.Range(0, 100);
-            Debug.Log(dropItem + " | " + dropChance + " | " + random);
+            var dropChance = dropChanceList[item.ItemCode];
+            var random = Random.Range(1, 100);
             if(random <= dropChance)
             {
                 Vector3 offset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f),0);
-                var item = ItemSpawner.Instance.SpawnItem(dropItem);
-                item.transform.SetLocalPositionAndRotation(transform.position + offset, Quaternion.identity);
+                var spawnItem = ItemSpawner.Instance.SpawnItem(item.ItemCode);
+                spawnItem.SetItemStruct(item);
+                spawnItem.transform.SetLocalPositionAndRotation(transform.position + offset, Quaternion.identity);
             }
         }
        

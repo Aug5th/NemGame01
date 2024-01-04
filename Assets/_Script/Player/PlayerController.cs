@@ -18,13 +18,4 @@ public class PlayerController : Singleton<PlayerController>
         weaponController = FindObjectOfType<WeaponController>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var collectable = collision.GetComponent<ICollectable>();
-        if(collectable == null)
-        {
-            return;
-        }
-        collectable.Collect();
-    }
 }
