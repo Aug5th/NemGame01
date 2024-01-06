@@ -17,6 +17,7 @@ public class HealthBar : MyMonoBehaviour
 
     public void UpdateHealthBar(float currentHealth, float maxHealth)
     {
+        gameObject.SetActive(true);
         _slider.value = currentHealth / maxHealth;
     }
 }

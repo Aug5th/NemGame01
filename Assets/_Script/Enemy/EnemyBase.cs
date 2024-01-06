@@ -11,8 +11,11 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
     [SerializeField] private EnemyAnimationHandler _animationHandler;
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
+    [SerializeField] private Rigidbody2D rigidbody2D;
+    [SerializeField] private EnemyStateManager _enemyStateManager;
 
     private ObjectPool<EnemyBase> _pool;
+    private bool _beAttacked;
     
     public EnemyStats Stats { get; private set; }
 
@@ -23,6 +26,8 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         base.LoadComponents();
         _healthBar = GetComponentInChildren<HealthBar>();
         _animationHandler = GetComponentInChildren<EnemyAnimationHandler>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        _enemyStateManager = GetComponent<EnemyStateManager>();
 
         SetDropItems();
     }
@@ -32,6 +37,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         Stats = stats;
         _currentHealth = _maxHealth = Stats.Health;
         _healthBar.UpdateHealthBar(_currentHealth, _maxHealth);
+        _healthBar.gameObject.SetActive(false);
     }
 
     protected virtual void SetDropItems()
@@ -49,6 +55,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
 
     private void Die()
     {
+        _enemyStateManager.SwitchState(_enemyStateManager.DieState);
         _animationHandler.OnTriggerAnimation(EnemyAnimationHandler.AnimationEvent.DIE);
     }
 
@@ -60,6 +67,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         DropItems();
 
     }
+
 
     public void DropItems()
     {
@@ -78,7 +86,6 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         }
        
     }   
-
     public void ApplyDamage(float amount)
     {
         var healthText = HealthTextSpawner.Instance.SpawnHealthText(amount.ToString(), Color.red);
@@ -91,4 +98,10 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
             Die();
         }
     }
+
+    public void Move(Vector2 direction)
+    {
+        rigidbody2D.velocity = direction * Stats.MovementSpeed * Time.deltaTime;
+    }
+
 }

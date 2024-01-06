@@ -18,4 +18,5 @@ public class PlayerController : Singleton<PlayerController>
         weaponController = FindObjectOfType<WeaponController>();
     }
 
+
 }
