@@ -18,6 +18,10 @@ public class EnemyRoamState : EnemyBaseState
     public override void FixedUpdateState(EnemyStateManager enemyStateManager)
     {
         Roaming(enemyStateManager.Enemy);
+        if(enemyStateManager.Enemy.IsWithinAttackDistance)
+        {
+            enemyStateManager.SwitchState(enemyStateManager.ChaseState);
+        }
     }
 
     public override void OnCollisionEnter(EnemyStateManager enemyStateManager)
@@ -34,7 +38,7 @@ public class EnemyRoamState : EnemyBaseState
     {
         var direction = (_targetPos - (Vector2)enemy.transform.position).normalized;
         enemy.Move(direction);
-        if(((Vector2)enemy.transform.position - _targetPos).sqrMagnitude < 0.01f)
+        if (((Vector2)enemy.transform.position - _targetPos).sqrMagnitude < 0.01f)
         {
             _targetPos = GetRandomPointInCircle(enemy);
         }
@@ -42,6 +46,8 @@ public class EnemyRoamState : EnemyBaseState
 
     private Vector2 GetRandomPointInCircle(EnemyBase enemy)
     {
-        return ((Vector2)enemy.transform.position + Random.insideUnitCircle * 5f).normalized;
+        Vector2 randomPosInCircle = Random.insideUnitCircle * 1f;
+        Debug.Log(randomPosInCircle);
+        return ((Vector2)enemy.transform.position + randomPosInCircle).normalized;
     }
 }

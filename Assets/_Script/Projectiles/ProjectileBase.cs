@@ -36,11 +36,18 @@ public class ProjectileBase : MyMonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Item") || collision.CompareTag("Collider"))
         {
-            pool.Release(this);
-            collision.GetComponent<IDamageable>().ApplyDamage(Stats.damage);
+            return;
         }
+
+        var damageable = collision.GetComponent<IDamageable>();
+        if(damageable != null)
+        {
+            damageable.ApplyDamage(Stats.damage);
+        }
+        
+        pool.Release(this);
     }
 
     public void SetPool(ObjectPool<ProjectileBase> pool)

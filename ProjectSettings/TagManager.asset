@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Projectile
   - Item
+  - Collider
   layers:
   - Default
   - TransparentFX
@@ -56,8 +57,14 @@ TagManager:
   - name: Characters
     uniqueID: 677289733
     locked: 0
+  - name: Tree
+    uniqueID: 4225938895
+    locked: 0
   - name: Items
     uniqueID: 1379306471
+    locked: 0
+  - name: Effects
+    uniqueID: 1991954405
     locked: 0
   - name: UI
     uniqueID: 3447375219

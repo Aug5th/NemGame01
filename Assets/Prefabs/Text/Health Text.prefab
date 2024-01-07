@@ -129,8 +129,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -200,5 +200,5 @@ SortingGroup:
   m_GameObject: {fileID: 4624962969086089162}
   m_Enabled: 1
   m_SortingLayerID: -847592077
-  m_SortingLayer: 5
+  m_SortingLayer: 8
   m_SortingOrder: 0

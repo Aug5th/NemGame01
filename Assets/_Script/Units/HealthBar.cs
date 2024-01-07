@@ -7,7 +7,6 @@ public class HealthBar : MyMonoBehaviour
 {
     private Slider _slider;
 
-
     protected override void LoadComponents()
     {
         base.LoadComponents();

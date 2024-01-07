@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6960067280254166286}
   - component: {fileID: 6960067280254166284}
   - component: {fileID: 5884063850993985903}
-  - component: {fileID: -4240319917855528410}
   m_Layer: 0
   m_Name: ISlime
   m_TagString: Item
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1379306471
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d8c79d3693b6d8c42b33efbeb7f95475, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,6 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d68c65fd11495e4ab2ca93399d001e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventoryItem:
+    ItemCode: 0
+    ItemType: 0
+    ItemIcon: {fileID: 0}
+    Quantity: 0
 --- !u!58 &5884063850993985903
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,24 +119,3 @@ CircleCollider2D:
   m_Offset: {x: 0.0024512373, y: 0.0029414967}
   serializedVersion: 2
   m_Radius: 0.05303631
---- !u!50 &-4240319917855528410
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6960067280254166321}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

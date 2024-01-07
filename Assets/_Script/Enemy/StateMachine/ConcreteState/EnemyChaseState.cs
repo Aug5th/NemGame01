@@ -17,6 +17,10 @@ public class EnemyChaseState : EnemyBaseState
     public override void FixedUpdateState(EnemyStateManager enemyStateManager)
     {
         ChasePlayer(enemyStateManager.Enemy);
+        if (!enemyStateManager.Enemy.IsWithinAttackDistance)
+        {
+            enemyStateManager.SwitchState(enemyStateManager.RoamState);
+        }
     }
 
     public override void OnCollisionEnter(EnemyStateManager enemyStateManager)

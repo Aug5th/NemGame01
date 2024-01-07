@@ -14,13 +14,16 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
     [SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] private EnemyStateManager _enemyStateManager;
 
+
     private ObjectPool<EnemyBase> _pool;
     private bool _beAttacked;
-    
+
     public EnemyStats Stats { get; private set; }
+    public bool IsWithinAttackDistance { get; set; }
 
     [SerializeField] protected List<ItemStructure> dropList = new List<ItemStructure>();
-    
+    [SerializeField] protected GameObject hitVFX;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -67,8 +70,6 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         DropItems();
 
     }
-
-
     public void DropItems()
     {
         var dropChanceList = ItemSpawner.Instance.ItemDropRateList;
@@ -76,16 +77,16 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         {
             var dropChance = dropChanceList[item.ItemCode];
             var random = Random.Range(1, 100);
-            if(random <= dropChance)
+            if (random <= dropChance)
             {
-                Vector3 offset = new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f),0);
+                Vector3 offset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
                 var spawnItem = ItemSpawner.Instance.SpawnItem(item.ItemCode);
                 spawnItem.SetInventoryItem(item);
                 spawnItem.transform.SetLocalPositionAndRotation(transform.position + offset, Quaternion.identity);
             }
         }
-       
-    }   
+
+    }
     public void ApplyDamage(float amount)
     {
         var healthText = HealthTextSpawner.Instance.SpawnHealthText(amount.ToString(), Color.red);
@@ -93,6 +94,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
 
         _currentHealth -= amount;
         _healthBar.UpdateHealthBar(_currentHealth, _maxHealth);
+        Instantiate(hitVFX, transform.position, Quaternion.identity);
         if (_currentHealth <= 0)
         {
             Die();
@@ -102,6 +104,11 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
     public void Move(Vector2 direction)
     {
         rigidbody2D.velocity = direction * Stats.MovementSpeed * Time.deltaTime;
+    }
+
+    public void SetAttackDistanceBool(bool isWithinAttackDistance)
+    {
+        IsWithinAttackDistance = isWithinAttackDistance;
     }
 
 }
