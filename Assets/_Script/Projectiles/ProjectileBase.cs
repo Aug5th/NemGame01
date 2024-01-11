@@ -10,8 +10,16 @@ public class ProjectileBase : MyMonoBehaviour
     private float distance;
 
     private ObjectPool<ProjectileBase> pool;
+
+    private Transform _impactPosition;
     public ProjectileStats Stats { get; private set; }
     public virtual void SetStats(ProjectileStats stats) => Stats = stats;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        _impactPosition = transform.Find("ImpactPosition");
+    }
 
     private void FixedUpdate()
     {
@@ -48,6 +56,13 @@ public class ProjectileBase : MyMonoBehaviour
         }
         
         pool.Release(this);
+
+        var knockbackable = collision.GetComponent<IKnockbackable>();
+        if(knockbackable != null)
+        {
+            knockbackable.StartKnockback(_impactPosition, 3f);
+        }
+
     }
 
     public void SetPool(ObjectPool<ProjectileBase> pool)

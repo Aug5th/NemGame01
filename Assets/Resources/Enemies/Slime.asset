@@ -17,5 +17,5 @@ MonoBehaviour:
     Health: 10
     AttackPower: 1
     AttackRange: 2
-    MovementSpeed: 100
+    MovementSpeed: 70
   Prefab: {fileID: 2663244734646097072, guid: b9f8bce00501c134cb1eb63d13c9181e, type: 3}

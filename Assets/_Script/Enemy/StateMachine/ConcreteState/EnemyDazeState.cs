@@ -6,26 +6,29 @@ public class EnemyDazeState : EnemyBaseState
 {
     public override void AnimationCallbackEvent(EnemyStateManager enemyStateManager)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void EnterState(EnemyStateManager enemyStateManager)
     {
-        throw new System.NotImplementedException();
+        enemyStateManager.Enemy.Move(Vector2.zero);
     }
 
     public override void FixedUpdateState(EnemyStateManager enemyStateManager)
     {
-        throw new System.NotImplementedException();
+        if(!enemyStateManager.Enemy.IsKnockingBack)
+        {
+            enemyStateManager.SwitchState(enemyStateManager.RoamState);
+        }
     }
 
     public override void OnCollisionEnter(EnemyStateManager enemyStateManager)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public override void UpdateState(EnemyStateManager enemyStateManager)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

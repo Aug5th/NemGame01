@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 5423229809271942161}
   - component: {fileID: 5423229809271942160}
   - component: {fileID: 5423229809271942162}
-  - component: {fileID: 8826046408313167985}
-  - component: {fileID: 2946650217259988881}
+  - component: {fileID: 2518123710966731526}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Item
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1379306471
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1272489448, guid: 554a6d5563b2157409a690776f9240f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,8 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d68c65fd11495e4ab2ca93399d001e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &8826046408313167985
-CircleCollider2D:
+  _inventoryItem:
+    ItemCode: 0
+    ItemType: 0
+    ItemIcon: {fileID: 0}
+    Quantity: 0
+--- !u!70 &2518123710966731526
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,27 +116,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0024512373, y: 0.0029414967}
-  serializedVersion: 2
-  m_Radius: 0.05303631
---- !u!50 &2946650217259988881
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5423229809271942191}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Offset: {x: 0.0044041276, y: 0.0022020936}
+  m_Size: {x: 0.7533686, y: 0.88989675}
+  m_Direction: 0

@@ -11,7 +11,7 @@ public class FloatingText : MyMonoBehaviour
     [SerializeField] Vector3 floatDirection = new Vector3(0, 1, 0);
 
     //[SerializeField] Vector3 offset = new Vector3(0, 0.1f, 0);
-    [SerializeField] Vector3 randomIntensity = new Vector3(0.5f, 0.1f, 0);
+    [SerializeField] Vector3 randomIntensity = new Vector3(1f, 1f, 0);
     
     [SerializeField] TextMeshPro textMeshPro;
     float timeElapsed = 0.0f;

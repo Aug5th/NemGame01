@@ -11,7 +11,7 @@ public class EnemyAttackDistance : MyMonoBehaviour
         base.LoadComponents();
         _circleCollider2D = GetComponent<CircleCollider2D>();
         _enemyBase = GetComponentInParent<EnemyBase>();
-        _circleCollider2D.radius = 0.6f;
+        _circleCollider2D.radius = 4f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -47,7 +47,6 @@ public class EnemyRoamState : EnemyBaseState
     private Vector2 GetRandomPointInCircle(EnemyBase enemy)
     {
         Vector2 randomPosInCircle = Random.insideUnitCircle * 1f;
-        Debug.Log(randomPosInCircle);
         return ((Vector2)enemy.transform.position + randomPosInCircle).normalized;
     }
 }

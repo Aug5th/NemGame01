@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6960067280254166287}
   - component: {fileID: 6960067280254166286}
   - component: {fileID: 6960067280254166284}
-  - component: {fileID: 5884063850993985903}
+  - component: {fileID: 5518364933595629520}
   m_Layer: 0
   m_Name: ISlime
   m_TagString: Item
@@ -103,8 +103,8 @@ MonoBehaviour:
     ItemType: 0
     ItemIcon: {fileID: 0}
     Quantity: 0
---- !u!58 &5884063850993985903
-CircleCollider2D:
+--- !u!61 &5518364933595629520
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,6 +116,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0024512373, y: 0.0029414967}
+  m_Offset: {x: 0, y: 0.029358283}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.05303631
+  m_Size: {x: 1, y: 0.5996597}
+  m_EdgeRadius: 0

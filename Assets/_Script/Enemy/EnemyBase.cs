@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
 
-public class EnemyBase : MyMonoBehaviour, IDamageable
+public class EnemyBase : MyMonoBehaviour, IDamageable , IKnockbackable
 {
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private EnemyAnimationHandler _animationHandler;
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
-    [SerializeField] private Rigidbody2D rigidbody2D;
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private EnemyStateManager _enemyStateManager;
 
 
@@ -20,6 +20,9 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
 
     public EnemyStats Stats { get; private set; }
     public bool IsWithinAttackDistance { get; set; }
+    public float KnockbackTime { get; set; } = 0.1f;
+    public bool IsKnocking { get; set; }
+    public bool IsKnockingBack { get; set; }
 
     [SerializeField] protected List<ItemStructure> dropList = new List<ItemStructure>();
     [SerializeField] protected GameObject hitVFX;
@@ -29,7 +32,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         base.LoadComponents();
         _healthBar = GetComponentInChildren<HealthBar>();
         _animationHandler = GetComponentInChildren<EnemyAnimationHandler>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         _enemyStateManager = GetComponent<EnemyStateManager>();
 
         SetDropItems();
@@ -103,7 +106,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
 
     public void Move(Vector2 direction)
     {
-        rigidbody2D.velocity = direction * Stats.MovementSpeed * Time.deltaTime;
+        rb.velocity = direction * Stats.MovementSpeed * Time.deltaTime;
     }
 
     public void SetAttackDistanceBool(bool isWithinAttackDistance)
@@ -111,4 +114,19 @@ public class EnemyBase : MyMonoBehaviour, IDamageable
         IsWithinAttackDistance = isWithinAttackDistance;
     }
 
+    public void StartKnockback(Transform impactPos, float force)
+    {
+        _enemyStateManager.SwitchState(_enemyStateManager.DazeState);
+        IsKnockingBack = true;
+        Vector2 knockBack = (transform.position - impactPos.position).normalized * force * rb.mass;
+        rb.AddForce(knockBack, ForceMode2D.Impulse);
+        StartCoroutine(KnockbackRoutine());
+    }
+
+    public IEnumerator KnockbackRoutine()
+    {
+        yield return new WaitForSeconds(KnockbackTime);
+        rb.velocity = Vector2.zero;
+        IsKnockingBack = false;
+    }
 }
