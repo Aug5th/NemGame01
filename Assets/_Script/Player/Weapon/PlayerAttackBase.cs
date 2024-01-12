@@ -82,10 +82,10 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
 
         //if (projectile == null)
         //    return null;
-        projectile.gameObject.SetActive(true);
+        
         projectile.transform.right = direction;
         projectile.GetComponent<Rigidbody2D>().velocity = direction.normalized * projectile.Stats.speed;
-
+        projectile.transform.Find("Trail").gameObject.SetActive(true);
         return projectile;
     }
 

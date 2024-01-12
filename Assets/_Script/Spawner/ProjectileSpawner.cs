@@ -42,6 +42,7 @@ public class ProjectileSpawner : Singleton<ProjectileSpawner>
         }, projectile =>
         {
             projectile.gameObject.SetActive(false);
+            projectile.transform.Find("Trail").gameObject.SetActive(false);
         }, projectile =>
         {
             Destroy(projectile.gameObject);
