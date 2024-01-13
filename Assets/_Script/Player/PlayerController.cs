@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : PresistentSingleton<PlayerController>
 {
     [SerializeField]
     private Transform player;
