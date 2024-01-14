@@ -43,7 +43,13 @@ public class PlayerMovement : MyMonoBehaviour
             PlayerAnimation.Instance.DoAnimation(AnimationType.IDLE);
         }
         Vector3 direction = new Vector3(inputX, inputY, 0).normalized;
-        rb.velocity = direction * speed;
+        var velocity = direction * speed;
+        Move(velocity);
+    }
+
+    public void Move(Vector2 velocity)
+    {
+        rb.velocity = velocity;
     }
 
     private void FlipPlayer(float x)

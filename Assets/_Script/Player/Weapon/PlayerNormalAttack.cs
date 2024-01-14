@@ -6,6 +6,8 @@ public class PlayerNormalAttack : PlayerAttackBase
 {
     [SerializeField]
     private Transform attackPoint;
+
+    private PlayerController _controller;
     protected override void FixedUpdate()
     {
         WeaponLookAtMouse();
@@ -15,6 +17,7 @@ public class PlayerNormalAttack : PlayerAttackBase
     protected override void LoadComponents()
     {
         base.LoadComponents();
+        _controller = GetComponentInParent<PlayerController>();
         attackDistance = 5f;
         attackRate = 1f;
     }
@@ -25,6 +28,7 @@ public class PlayerNormalAttack : PlayerAttackBase
         if(InputManager.Instance.MouseLeftClick == 1)
         {
             AttackToMousePoint(ProjectileType.Arrow, attackPoint);
+            _controller.PlayerMovement.Move(Vector2.zero);
         } 
     }
 

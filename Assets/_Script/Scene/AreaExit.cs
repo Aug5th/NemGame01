@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class AreaExit : MonoBehaviour
+public class AreaExit : MyMonoBehaviour
 {
     [SerializeField] private Scene _scene;
     [SerializeField] private TransactionEntry _transactionEntry;

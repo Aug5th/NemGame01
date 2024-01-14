@@ -12,10 +12,15 @@ public class PlayerController : PresistentSingleton<PlayerController>
     private WeaponController weaponController;
     public WeaponController WeaponController => weaponController;
 
+    [SerializeField]
+    private PlayerMovement _playerMovement;
+    public PlayerMovement PlayerMovement => _playerMovement;
+
     protected override void LoadComponents()
     {
         player = transform;
         weaponController = FindObjectOfType<WeaponController>();
+        _playerMovement = GetComponentInChildren<PlayerMovement>();
     }
 
 
