@@ -32,5 +32,19 @@ public class UIInventoryPanel : MyMonoBehaviour
             uiItem.transform.localScale = Vector3.one;
             _inventoryItems.Add(uiItem);
         }
+        UpdateInventoryUI();
+    }
+
+    public void UpdateInventoryUI()
+    {
+        if(PlayerInventory.Instance.Inventory == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < PlayerInventory.Instance.Inventory.Count; i++)
+        {
+            _inventoryItems[i].LoadItem(PlayerInventory.Instance.Inventory[i]);
+        }
     }
 }

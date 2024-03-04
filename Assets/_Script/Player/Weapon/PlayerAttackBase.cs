@@ -55,7 +55,7 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
     {
         if (nearestTarget == null)
             return false;
-        return Vector2.Distance(PlayerController.Instance.Player.position, nearestTarget.transform.position) < attackDistance;
+        return Vector2.Distance(PlayerController.Instance.transform.position, nearestTarget.transform.position) < attackDistance;
     }
 
     protected void GetNearestTarget()
@@ -66,7 +66,7 @@ public abstract class PlayerAttackBase : MyMonoBehaviour
             nearestTarget = allTargets[0];
             foreach (GameObject target in allTargets)
             {
-                if (Vector2.Distance(PlayerController.Instance.Player.position, target.transform.position) < Vector2.Distance(PlayerController.Instance.Player.position, nearestTarget.transform.position))
+                if (Vector2.Distance(PlayerController.Instance.transform.position, target.transform.position) < Vector2.Distance(PlayerController.Instance.transform.position, nearestTarget.transform.position))
                 {
                     nearestTarget = target;
                 }

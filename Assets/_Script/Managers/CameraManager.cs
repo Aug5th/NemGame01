@@ -9,6 +9,6 @@ public class CameraManager : Singleton<CameraManager>
     {
         base.LoadComponents();
         cinemachine = GetComponentInChildren<Cinemachine.CinemachineStateDrivenCamera>();
-        cinemachine.Follow = PlayerController.Instance.Player;
+        cinemachine.Follow = PlayerController.Instance.transform;
     }
 }

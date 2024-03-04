@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UIInventoryItem : MonoBehaviour
+public class UIInventoryItem : MyMonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform _itemSprite;
+    [SerializeField] private Transform _itemQuantity;
+
+    protected override void LoadComponents()
     {
-        
+        base.LoadComponents();
+        _itemSprite = transform.Find("ItemSprite");
+        _itemQuantity = transform.Find("ItemQuantity");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetVisibleItem(bool isVisible)
     {
-        
+        _itemSprite.gameObject.SetActive(isVisible);
+        _itemQuantity.gameObject.SetActive(isVisible);
+    }
+
+    public void LoadItem(InventoryItem item)
+    {
+        SetVisibleItem(true);
+        var quantity = item.Quantity.ToString();
+        _itemSprite.GetComponent<Image>().sprite = item.ItemIcon;
+        _itemQuantity.GetComponent<TextMeshProUGUI>().text = quantity;
     }
 }

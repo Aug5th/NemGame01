@@ -35,7 +35,7 @@ public class EnemyChaseState : EnemyBaseState
 
     private void ChasePlayer(EnemyBase enemy)
     {
-        var target = PlayerController.Instance.Player;
+        var target = PlayerController.Instance.transform;
         Vector3 direction = target.position - enemy.transform.position;
         enemy.Move(direction);
     }

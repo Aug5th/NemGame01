@@ -10,11 +10,19 @@ public class PlayerMovement : MyMonoBehaviour
     private float speed = 1f;
     [SerializeField]
     private Rigidbody2D rb;
+    [SerializeField]
+    private PlayerController _player;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         rb = GetComponentInParent<Rigidbody2D>();
+        
+    }
+
+    private void Start()
+    {
+        _player = PlayerController.Instance;
     }
 
     private void Update()
@@ -24,10 +32,10 @@ public class PlayerMovement : MyMonoBehaviour
     }
 
     private void FlipObjects()
-    {
-        Vector3 direction =  InputManager.Instance.MousePosition - PlayerController.Instance.Player.position;
+{
+        Vector3 direction =  InputManager.Instance.MousePosition - _player.transform.position;
         FlipPlayer(direction.x);
-        PlayerController.Instance.WeaponController.FlipWeapon(direction.x);
+        _player.WeaponController.FlipWeapon(direction.x);
     }
 
     private void PlayerMove()

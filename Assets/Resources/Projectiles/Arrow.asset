@@ -15,8 +15,8 @@ MonoBehaviour:
   projectileType: 0
   _stats:
     damage: 2
-    speed: 20
-    attackDistance: 10
+    speed: 10
+    attackDistance: 2
     attackRate: 0.7
     maxDistance: 40
   Prefab: {fileID: 1863822243855647730, guid: f4c10c598dd9f65408aad48e78d6266e, type: 3}

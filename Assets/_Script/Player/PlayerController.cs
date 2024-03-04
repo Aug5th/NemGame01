@@ -5,10 +5,6 @@ using UnityEngine;
 public class PlayerController : PresistentSingleton<PlayerController>
 {
     [SerializeField]
-    private Transform player;
-    public Transform Player => player;
-
-    [SerializeField]
     private WeaponController weaponController;
     public WeaponController WeaponController => weaponController;
 
@@ -18,7 +14,6 @@ public class PlayerController : PresistentSingleton<PlayerController>
 
     protected override void LoadComponents()
     {
-        player = transform;
         weaponController = FindObjectOfType<WeaponController>();
         _playerMovement = GetComponentInChildren<PlayerMovement>();
     }

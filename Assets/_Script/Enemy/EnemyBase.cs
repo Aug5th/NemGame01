@@ -50,7 +50,7 @@ public class EnemyBase : MyMonoBehaviour, IDamageable , IKnockbackable
     {
         ItemStructure item = new ItemStructure();
         item.ItemCode = ItemCode.Gold;
-        item.Quantity = 1;
+        item.Quantity = 15;
         dropList.Add(item);
     }
 

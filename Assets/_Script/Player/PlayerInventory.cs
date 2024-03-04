@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventory : MyMonoBehaviour
+public class PlayerInventory : Singleton<PlayerInventory>
 {
     [SerializeField] private List<InventoryItem> _inventory;
+    public List<InventoryItem> Inventory => _inventory;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var collectable = collision.GetComponent<ICollectable>();
